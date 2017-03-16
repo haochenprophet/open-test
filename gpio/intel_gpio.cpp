@@ -137,7 +137,7 @@ void help()
 {
 printf("\
 [usage]: gpio [option] {p , l , i , o , n ,} \n\
-	p: parse  p <gpio_pin> [gpio_base] ie:./gpio r 36 \n\
+	p: parse  p <gpio_pin> [gpio_base] ie:./gpio p 36 \n\
 	l: list   l [gpio_base=default 500]  ie:./gpio l \n\
 	i: input  i <gpi_pin> [gpio_base] ie:./gpio i 36 \n\
 	o: ouput  o <gpo_pin> <1:high,0:low> [gpio_base] ie:./gpio  o 36 1 \n\
@@ -160,7 +160,7 @@ int main(int argc,char *argv[])
 	if(argv[1][0]=='p'||argv[1][0]=='i'||argv[1][0]=='n')//p,i,n
 	{
 
-		if(argc<3) help(); return -1;
+		if(argc<3){ help(); return -1;}
 		pin=atol(argv[2]);
 
 		if(argc>3){
@@ -199,7 +199,7 @@ int main(int argc,char *argv[])
 
 	if(argv[1][0]=='o')
 	{
-		if(argc<4) help(); return -1;
+		if(argc<4){ help(); return -1; }
 
 		if(argc>4){
 			gpio_base=atol(argv[4]);// get gpio base
