@@ -19,7 +19,6 @@ public:
 public:
 	Cgpio();
 	void set_gpio_base(GpioAddrT addr);
-	virtual	int convert(int pin); //pin number convert register bit offset 
 	virtual bool is_exist(int pin);// this by chipset define ie .some chip gpio 0-32 ,some chip gpio 0-64
 	virtual void list_gpio();
 	virtual int parse(int pin);

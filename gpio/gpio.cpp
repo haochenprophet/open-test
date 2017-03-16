@@ -6,17 +6,9 @@ Cgpio::Cgpio()
 
 }
 
-
 void Cgpio::set_gpio_base(GpioAddrT addr)
 {
 	this->gpio_base=addr;
-}
-
-int Cgpio::convert(int pin)
-{
-	OUT_ERROR
-	
-	return -1;
 }
 
 bool  Cgpio::is_exist(int pin)// this by chipset define ie .some chip gpio 0-32 ,some chip gpio 0-64
