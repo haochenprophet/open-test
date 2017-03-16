@@ -1,2 +1,3 @@
-gpio
+gpio/gpio
+gpio/*.o
 *.o

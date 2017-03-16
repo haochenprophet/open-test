@@ -1,11 +1,13 @@
-src := $(shell ls *.cpp)
-objs := $(patsubst %.cpp ,%.o , $(src) )
 
-gpio: $(objs)
-	g++ -O -o $@ $^
+MK_TAG = gpio
 
-%.O:%.cpp
-	g++ -O -c -o $@ $< 
-	
-clean:
-	rm -f gpio *.o
+CFLAGS +=\
+	-std=gnu++11 \
+	-DLINUX_OS \
+	-o $(MK_TAG) *.cpp \
+
+all : 
+	g++ $(CFLAGS)
+
+clean :
+	rm -f $(MK_TAG) *.o *~
