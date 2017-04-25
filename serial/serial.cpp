@@ -256,7 +256,7 @@ void Cserial::display(char *cp,int count,int hex_disp)
 }
 
 #if SERIAL_DEBUG
-#define LED_DEBUG 1
+#define LED_DEBUG 0
 int main(int argc,char *argv[])
 {
 	Cserial s;
