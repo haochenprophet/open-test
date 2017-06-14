@@ -82,7 +82,47 @@ public:
 	int and_or(SioAndOrStruct *p,int count);
 };
 
-class CIteSio :public Csio
+class Cite:public Csio //ITE
+{
+public:
+	int unlock();
+	int lock();
+	int who();
+};
+
+class Cwinbond:public Csio //Winbond
+{
+public:
+	int unlock();
+	int lock();
+	int who();
+};
+
+class Cfintek:public Csio //Fintek
+{
+public:
+	int unlock();
+	int lock();
+	int who();
+};
+
+class Csmsc:public Csio //SMSC
+{
+public:
+	int unlock();
+	int lock();
+	int who();
+};
+
+class Cnct:public Csio //NCT
+{
+public:
+	int unlock();
+	int lock();
+	int who();
+};
+
+class Cast:public Csio //AST
 {
 public:
 	int unlock();
