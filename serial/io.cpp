@@ -80,6 +80,18 @@ void Cio::list()
 	}	
 }
 
+unsigned  Cio::isa_read(unsigned short index_port,unsigned char index,unsigned short data_port)
+{
+	this->byte_write(index_port,index);
+	return this->byte_read(data_port);
+}
+
+void Cio::isa_write(unsigned short index_port,unsigned char index,unsigned short data_port,unsigned char data)
+{
+	this->byte_write(index_port,index);
+	this->byte_write(data_port,data);
+}
+
 #if IO_DEBUG
 int main()
 {

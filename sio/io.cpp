@@ -36,7 +36,7 @@ void Cio::byte_write(unsigned char byte,unsigned port)
 #endif
 }
 
-unsigned short Cio::word_read(unsigned port)
+unsigned Cio::word_read(unsigned port)
 {
 #if LINUX_OS
 	return inw(port);
@@ -52,7 +52,7 @@ void Cio::word_write(unsigned short word,unsigned port)
 #endif
 }
 
-unsigned int Cio::dword_read(unsigned port)
+unsigned Cio::dword_read(unsigned port)
 {
 
 #if LINUX_OS

@@ -1,4 +1,3 @@
-
 #ifndef IO_H
 #define IO_H
 
@@ -7,6 +6,7 @@
 #endif
 
 #include <stdio.h>
+#include <iostream>
 
 class Cio
 {
@@ -19,8 +19,9 @@ public:
 	void word_write(unsigned short word,unsigned port);
 	unsigned dword_read(unsigned port);
 	void dword_write(unsigned dword,unsigned port);
+	unsigned  isa_read(unsigned short index_port,unsigned char index,unsigned short data_port);
+	void isa_write(unsigned short index_port,unsigned char index,unsigned short data_port,unsigned char data);
 	void list();
 };
-
 
 #endif
