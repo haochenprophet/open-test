@@ -89,105 +89,112 @@ int Csio::and_or(SioAndOrStruct *p,int count)
 
 int Cite::unlock()
 {
-	this->ByteWriteIO(p->index,0x87);
-	this->ByteWriteIO(p->index,0x01);
-	this->ByteWriteIO(p->index,0x55);
-	if(p->index==0x2E) this->ByteWriteIO(p->index,0x55);//ITE2E(87,01,55,55)
-	else if(p->index==0x4E) this->ByteWriteIO(p->index,0xAA);//ITE4E(87,01,55,AA)
+	this->byte_read(this->index_port,0x87);
+	this->byte_read(this->index_port,0x01);
+	this->byte_read(this->index_port,0x55);
+	if(this->index_port==0x2E) this->byte_read(this->index_port,0x55);//ITE2E(87,01,55,55)
+	else if(this->index_port==0x4E) this->byte_read(this->index_port,0xAA);//ITE4E(87,01,55,AA)
 	return 0;
 }
 
 int Cite::lock()
 {
-	this->IsaIoWrite(p->index,ITE_LOCK_REG,p->data,ITE_LOCK);
+	this->isa_write(this->index_port,ITE_LOCK_REG,this->data_port,ITE_LOCK);
 	return 0;
 }
 
 int Cite::who()
 {
-	if(chipid==0||chipid==0xFFFF) return 0;
-	return 1;
+	return IteId;
 }
 
 int Cwinbond::unlock()
 {
-	this->ByteWriteIO(p->index,WB_UNLOCK);
-	this->ByteWriteIO(p->index,WB_UNLOCK);
+	this->byte_read(this->index_port,WB_UNLOCK);
+	this->byte_read(this->index_port,WB_UNLOCK);
 	return 0;
 }
 
 int Cwinbond::lock()
 {
-	this->ByteWriteIO(p->index,WB_LOCK);
+	this->byte_read(this->index_port,WB_LOCK);
 	return 0;
 }
 
 int Cwinbond::who()
 {
-	if(chipid==0||chipid==0xFFFF) return 0;
-	return 1;
+	return WinbondId;
 }
 
 int Cnct::unlock()
 {
-	this->ByteWriteIO(p->index,NCT_UNLOCK);
-	this->ByteWriteIO(p->index,NCT_UNLOCK);
+	this->byte_read(this->index_port,NCT_UNLOCK);
+	this->byte_read(this->index_port,NCT_UNLOCK);
 	return 0;
 }
 
 int Cnct::lock()
 {
-	this->ByteWriteIO(p->index,NCT_LOCK);
+	this->byte_read(this->index_port,NCT_LOCK);
 	return 0;
 }
 
 int Cnct::who()
 {
-	if(chipid==0||chipid==0xFFFF) return 0;
-	if((chipid&0xB350)==0xB350) return 1;
-	return 0;
+	return NctId;
 }
 
 int Cfintek::unlock()
 {
-	this->ByteWriteIO(p->index,FTEK_UNLOCK);
-	this->ByteWriteIO(p->index,FTEK_UNLOCK);
+	this->byte_read(this->index_port,FTEK_UNLOCK);
+	this->byte_read(this->index_port,FTEK_UNLOCK);
 	return 0;
 }
 
 int Cfintek::lock()
 {
-	this->ByteWriteIO(p->index,FTEK_LOCK);
+	this->byte_read(this->index_port,FTEK_LOCK);
 	return 0;
 }
 
 int Cfintek::who()
 {
-	unsigned char data;
-	if(chipid==0||chipid==0xFFFF) return 0;
- 	data=this->IsaIoRead(p->index,FTEK_VIDREG_H,p->data);
-	if(data!=0x19) return 0;
-	data=this->IsaIoRead(p->index,FTEK_VIDREG_L,p->data);
-	if(data!=0x34) return 0;
-	return 1;
+	return FintekId;
 }
 
 int Csmsc::unlock()
 {
-	this->ByteWriteIO(p->index,SMSC_UNLOCK);
+	this->byte_read(this->index_port,SMSC_UNLOCK);
 	return 0;
 }
 
 int Csmsc::lock()
 {
-	this->ByteWriteIO(p->index,SMSC_LOCK);
+	this->byte_read(this->index_port,SMSC_LOCK);
 	return 0;
 }
 
 int Csmsc::who()
 {
-	if(chipid==0||chipid==0xFFFF) return 0;
-	return 1;
+	return SmscId;
+}
+
+int Cast::unlock()
+{
+	this->byte_read(this->index_port,AST_UNLOCK);
+	this->byte_read(this->index_port,AST_UNLOCK);
+	return 0;
+}
+
+int Cast::lock()
+{
+	this->byte_read(this->index_port,AST_LOCK);
+	return 0;
+}
+
+int Cast::who()
+{
+	return AstId;
 }
 
 
@@ -195,7 +202,12 @@ int Csmsc::who()
 int main()
 {
 	printf("sio.cpp  main()\n");
-	Csio  Csio;
+	Cite  ite;
+	Cwinbond  winbond;
+	Csmsc  smsc;
+	Cfintek  fintek;
+	Cnct  nct;
+	Cast  ast;
 	return 0;
 }
 #endif
