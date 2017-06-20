@@ -140,7 +140,7 @@ long CAllotMem::checkFileSize(FILE *fp)
 void CAllotMem::display(AllotFileMem *p)
 {
 	char *cp;
-	printf("start=%08lXh end=%08lXh current=%08lXh\n",p->start,p->end,p->current);
+	printf("start=%08lXh end=%08lXh current=%08lXh\n",(unsigned long)p->start,(unsigned long)p->end,(unsigned long)p->current);
 	printf("readSize=%08lXh fileSize=%08lXh fileEmpty=%ld\n[file info]:\n",p->readSize,p->fileSize,p->fileEmpty);
 	for(cp=p->start;cp<p->end;cp++) printf("%c",*cp);
 }

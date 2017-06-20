@@ -236,7 +236,7 @@ int Cserial::read_verify(long count)
 		if(this->read_timeout) break;
 	 }
 
-	 if(this->read_count!=count){error_count++; printf("Error:read_verify size not match.read_count=%d\n",this->read_count);}
+	 if(this->read_count!=count){error_count++; printf("Error:read_verify size not match.read_count=%ld\n",this->read_count);}
 	 
 	 if(error_count) printf("Error:find %d error .\n",error_count);
 	 else printf("read_verify pass.\n");
@@ -304,7 +304,7 @@ int main(int argc,char *argv[])
 		{
 			if(argc>2) s.read_to_file(argv[2]);
 			else printf("Cmd error: No input filename for read !\n");
-			printf("\nread_count=%d\n",s.read_count);
+			printf("\nread_count=%ld\n",s.read_count);
 		}
 
 		if(argv[1][0]=='w') //write
