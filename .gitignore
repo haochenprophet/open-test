@@ -3,3 +3,5 @@ gpio/*.o
 *.o
 serial/serial
 sio/sio
+gpio/ast_gpio
+gpio/intel_gpio

@@ -126,12 +126,7 @@ int CintelGpio::set_gpo(int pin,int high_low)//high_low: GPO_LOW ,GPO_HIGH
 	return 0;
 }
 
-
-#ifndef INTEL_GPIO_TEST
-#define INTEL_GPIO_TEST 1
-#endif
-
-#if INTEL_GPIO_TEST
+#if intel_gpio_TEST
 
 void help()
 {

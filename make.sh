@@ -1,5 +1,6 @@
 cd gpio 
-make
+make main=intel
+make main=ast
 cd ..
 
 cd serial

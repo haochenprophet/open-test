@@ -1,9 +1,9 @@
 
-MK_TAG = gpio
+MK_TAG = $(main)_gpio
 
 CFLAGS +=\
 	-std=gnu++11 \
-	-DLINUX_OS \
+	-DLINUX_OS -D$(main)_gpio_TEST=1\
 	-o $(MK_TAG) *.cpp \
 
 all : 
