@@ -78,6 +78,7 @@ public:
 	unsigned short chipId();
 	unsigned char read(unsigned char ldn,unsigned char reg);
 	int write(unsigned char ldn,unsigned char reg,unsigned char data);
+	int active(unsigned char ldn,unsigned char bit=1);
 	int and_or(SioAndOrStruct *p);
 	int and_or(SioAndOrStruct *p,int count);
 };

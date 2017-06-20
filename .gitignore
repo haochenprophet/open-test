@@ -6,3 +6,5 @@ sio/sio
 gpio/ast_gpio
 gpio/intel_gpio
 gpio/_gpio
+io/io
+memory/memory

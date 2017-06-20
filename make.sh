@@ -4,6 +4,10 @@ cd io
 make
 cd ..
 
+cd memory
+make
+cd ..
+
 cd sio
 make
 cd ..

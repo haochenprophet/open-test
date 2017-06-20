@@ -1,8 +1,8 @@
-MK_TAG = serial
+MK_TAG = memory
 
 CFLAGS +=\
 	-std=gnu++11 \
-	-DLINUX_OS -DSERIAL_DEBUG=1\
+	-DLINUX_OS -DMEMORY_DEBUG=1\
 	-o $(MK_TAG) *.cpp \
 
 all : 
