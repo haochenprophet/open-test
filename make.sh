@@ -1,5 +1,7 @@
+sh sync.sh
+
 cd gpio
-make
+#make
 make main=intel
 make main=ast
 cd ..
