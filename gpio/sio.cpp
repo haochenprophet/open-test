@@ -66,6 +66,17 @@ int Csio::write(unsigned char ldn,unsigned char reg,unsigned char data)
 	return 0;
 }
 
+int Csio::active(unsigned char ldn,unsigned char bit)
+{
+	if(this->unlock_flag&&this->unlock()) return -1;
+
+	this->isa_write(this->index_port,LDN_REG,this->data_port,ldn);
+	this->isa_or(this->index_port,ACTIVE_REG,this->data_port,bit);
+
+	if(this->unlock_flag) this->lock();
+	return 0;
+}
+
 int Csio::and_or(SioAndOrStruct *p)
 {
 	if(this->unlock_flag&&this->unlock()) return -1;

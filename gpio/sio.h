@@ -40,6 +40,7 @@
 #define LDN_REG		0x07
 #define CHIP_REG_H	0x20
 #define CHIP_REG_L	0x21
+#define ACTIVE_REG	0x30
 
 
 enum SioVendorId	//if you want register sio you must resiter sioId at 0<sioid<FinalId
