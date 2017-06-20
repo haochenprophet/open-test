@@ -73,9 +73,13 @@ int Csio::and_or(SioAndOrStruct *p)
 	if(p->reg >= 0x30) this->isa_write(this->index_port,LDN_REG,this->data_port,p->ldn);
 
 	p->data=this->isa_read(this->index_port,p->reg,this->data_port);
-	p->data&=p->and_data;
-	p->data|=p->or_data;
-	this->isa_write(this->index_port,p->reg,this->data_port,p->data);
+
+	if(!(p->and_data==0xFF&&p->or_data==0x00))//not only read
+	{
+		p->data&=p->and_data;
+		p->data|=p->or_data;
+		this->isa_write(this->index_port,p->reg,this->data_port,p->data);
+	}
 
 	if(this->unlock_flag) this->lock();
 	return 0;

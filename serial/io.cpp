@@ -92,6 +92,18 @@ void Cio::isa_write(unsigned short index_port,unsigned char index,unsigned short
 	this->byte_write(data_port,data);
 }
 
+void Cio::isa_or(unsigned short index_port,unsigned char index,unsigned short data_port,unsigned char bits)
+{
+	this->byte_write(index_port,index);
+	this->byte_write(data_port,(unsigned char)this->byte_read(data_port)|bits);
+}
+
+void Cio::isa_and(unsigned short index_port,unsigned char index,unsigned short data_port,unsigned char bits)
+{
+	this->byte_write(index_port,index);
+	this->byte_write(data_port,(unsigned char)this->byte_read(data_port)&bits);
+}
+
 #if IO_DEBUG
 int main()
 {

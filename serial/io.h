@@ -21,6 +21,8 @@ public:
 	void dword_write(unsigned dword,unsigned port);
 	unsigned  isa_read(unsigned short index_port,unsigned char index,unsigned short data_port);
 	void isa_write(unsigned short index_port,unsigned char index,unsigned short data_port,unsigned char data);
+	void isa_or(unsigned short index_port,unsigned char index,unsigned short data_port,unsigned char bits);
+	void isa_and(unsigned short index_port,unsigned char index,unsigned short data_port,unsigned char bits);
 	void list();
 };
 
