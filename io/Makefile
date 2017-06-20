@@ -1,5 +1,5 @@
 
-MK_TAG = sio
+MK_TAG = io
 
 CFLAGS +=\
 	-std=gnu++11 \
