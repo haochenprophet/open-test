@@ -16,6 +16,6 @@ public:
 	int set_native(int pin);
 	int set_gpi(int pin);
 	int set_gpo(int pin,int high_low);//high_low: GPO_LOW ,GPO_HIGH
-}
+};
 
 #endif

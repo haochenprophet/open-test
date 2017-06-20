@@ -42,7 +42,7 @@
 #define CHIP_REG_L	0x21
 
 
-typedef enum SioVendorId	//if you want register sio you must resiter sioId at 0<sioid<FinalId
+enum SioVendorId	//if you want register sio you must resiter sioId at 0<sioid<FinalId
 {
 	UnknowId=-1,//-1
 	SmscId,	//00
@@ -61,9 +61,9 @@ typedef  struct SioAndOrStruct
 	unsigned char and_data; 
 	unsigned char or_data; 
 	unsigned char data;//record current data
-};
+}SioAndOr;
 
-class Csio
+class Csio : public Cio
 {
 public:
 	int unlock_flag; //1:Access  sio register need unlock  ,lock  0: do not need  unlock lock
@@ -77,7 +77,7 @@ public:
 	virtual	int who();//return SioVendorId.
 	unsigned short chipId();
 	unsigned char read(unsigned char ldn,unsigned char reg);
-	void write(unsigned char ldn,unsigned char reg,unsigned char data);
+	int write(unsigned char ldn,unsigned char reg,unsigned char data);
 	int and_or(SioAndOrStruct *p);
 	int and_or(SioAndOrStruct *p,int count);
 };

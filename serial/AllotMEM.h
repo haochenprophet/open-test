@@ -1,4 +1,4 @@
-
+#ifndef ALLOTMEM_H
 #define	ALLOTMEM_H
 
 #ifndef ALLOTMEM_DEBUG

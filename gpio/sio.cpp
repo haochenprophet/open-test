@@ -1,4 +1,4 @@
-
+#include "sio.h"
 
 Csio::Csio()
 {
@@ -55,7 +55,7 @@ unsigned char Csio::read(unsigned char ldn,unsigned char reg)
 	return data;
 }
 
-void Csio::write(unsigned char ldn,unsigned char reg,unsigned char data)
+int Csio::write(unsigned char ldn,unsigned char reg,unsigned char data)
 {
 	if(this->unlock_flag&&this->unlock()) return -1;
 
@@ -63,6 +63,7 @@ void Csio::write(unsigned char ldn,unsigned char reg,unsigned char data)
 	this->isa_write(this->index_port,reg,this->data_port,data);
 
 	if(this->unlock_flag) this->lock();	
+	return 0;
 }
 
 int Csio::and_or(SioAndOrStruct *p)
@@ -89,11 +90,11 @@ int Csio::and_or(SioAndOrStruct *p,int count)
 
 int Cite::unlock()
 {
-	this->byte_read(this->index_port,0x87);
-	this->byte_read(this->index_port,0x01);
-	this->byte_read(this->index_port,0x55);
-	if(this->index_port==0x2E) this->byte_read(this->index_port,0x55);//ITE2E(87,01,55,55)
-	else if(this->index_port==0x4E) this->byte_read(this->index_port,0xAA);//ITE4E(87,01,55,AA)
+	this->byte_write(this->index_port,0x87);
+	this->byte_write(this->index_port,0x01);
+	this->byte_write(this->index_port,0x55);
+	if(this->index_port==0x2E) this->byte_write(this->index_port,0x55);//ITE2E(87,01,55,55)
+	else if(this->index_port==0x4E) this->byte_write(this->index_port,0xAA);//ITE4E(87,01,55,AA)
 	return 0;
 }
 
@@ -110,14 +111,14 @@ int Cite::who()
 
 int Cwinbond::unlock()
 {
-	this->byte_read(this->index_port,WB_UNLOCK);
-	this->byte_read(this->index_port,WB_UNLOCK);
+	this->byte_write(this->index_port,WB_UNLOCK);
+	this->byte_write(this->index_port,WB_UNLOCK);
 	return 0;
 }
 
 int Cwinbond::lock()
 {
-	this->byte_read(this->index_port,WB_LOCK);
+	this->byte_write(this->index_port,WB_LOCK);
 	return 0;
 }
 
@@ -128,14 +129,14 @@ int Cwinbond::who()
 
 int Cnct::unlock()
 {
-	this->byte_read(this->index_port,NCT_UNLOCK);
-	this->byte_read(this->index_port,NCT_UNLOCK);
+	this->byte_write(this->index_port,NCT_UNLOCK);
+	this->byte_write(this->index_port,NCT_UNLOCK);
 	return 0;
 }
 
 int Cnct::lock()
 {
-	this->byte_read(this->index_port,NCT_LOCK);
+	this->byte_write(this->index_port,NCT_LOCK);
 	return 0;
 }
 
@@ -146,14 +147,14 @@ int Cnct::who()
 
 int Cfintek::unlock()
 {
-	this->byte_read(this->index_port,FTEK_UNLOCK);
-	this->byte_read(this->index_port,FTEK_UNLOCK);
+	this->byte_write(this->index_port,FTEK_UNLOCK);
+	this->byte_write(this->index_port,FTEK_UNLOCK);
 	return 0;
 }
 
 int Cfintek::lock()
 {
-	this->byte_read(this->index_port,FTEK_LOCK);
+	this->byte_write(this->index_port,FTEK_LOCK);
 	return 0;
 }
 
@@ -164,13 +165,13 @@ int Cfintek::who()
 
 int Csmsc::unlock()
 {
-	this->byte_read(this->index_port,SMSC_UNLOCK);
+	this->byte_write(this->index_port,SMSC_UNLOCK);
 	return 0;
 }
 
 int Csmsc::lock()
 {
-	this->byte_read(this->index_port,SMSC_LOCK);
+	this->byte_write(this->index_port,SMSC_LOCK);
 	return 0;
 }
 
@@ -181,14 +182,14 @@ int Csmsc::who()
 
 int Cast::unlock()
 {
-	this->byte_read(this->index_port,AST_UNLOCK);
-	this->byte_read(this->index_port,AST_UNLOCK);
+	this->byte_write(this->index_port,AST_UNLOCK);
+	this->byte_write(this->index_port,AST_UNLOCK);
 	return 0;
 }
 
 int Cast::lock()
 {
-	this->byte_read(this->index_port,AST_LOCK);
+	this->byte_write(this->index_port,AST_LOCK);
 	return 0;
 }
 

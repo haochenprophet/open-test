@@ -3,7 +3,7 @@ MK_TAG = sio
 
 CFLAGS +=\
 	-std=gnu++11 \
-	-DLINUX_OS \
+	-DLINUX_OS -DSIO_DEBUG=1\
 	-o $(MK_TAG) *.cpp \
 
 all : 

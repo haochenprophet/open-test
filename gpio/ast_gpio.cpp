@@ -1,3 +1,4 @@
+#include "ast_gpio.h"
 
 CAstGpio::CAstGpio()
 {
