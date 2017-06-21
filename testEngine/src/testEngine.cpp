@@ -28,18 +28,18 @@ int CtestEngine::execute(int errorlevel,char *cmd ,char *desc)
 	{
 		if(errorlevel==0){
 			this->incError();
-			printf("Error[%d]: [execute %d test]:%s\ncmd=%s,errorlevel=%d\n",this->getError(),this->count_execute,desc,cmd,errorlevel);//test.
+			printf("Error[%ld]: [execute %d test]:%s\ncmd=%s,errorlevel=%d\n",this->getError(),this->count_execute,desc,cmd,errorlevel);//test.
 		}
 		if(errorlevel==1)
 		{
 			this->incWarning();
-			printf("Warning[%d]: [execute %d test]:%s\ncmd=%s,errorlevel=%d\n",this->getWarning(),this->count_execute,desc,cmd,errorlevel);//test.
+			printf("Warning[%ld]: [execute %d test]:%s\ncmd=%s,errorlevel=%d\n",this->getWarning(),this->count_execute,desc,cmd,errorlevel);//test.
 		}
 	}
 	else
 	{
 		this->incPass();
-		printf("Pass[%d]: [execute %d test]:%s\ncmd=%s,errorlevel=%d\n",this->getPass(),this->count_execute,desc,cmd,errorlevel);//test.
+		printf("Pass[%ld]: [execute %d test]:%s\ncmd=%s,errorlevel=%d\n",this->getPass(),this->count_execute,desc,cmd,errorlevel);//test.
 	}
 	
 	return 0;

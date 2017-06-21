@@ -22,6 +22,6 @@ cd serial
 make
 cd ..
 
-cd testEngine
+cd testEngine/src
 make
-cd ..
+cd ../..

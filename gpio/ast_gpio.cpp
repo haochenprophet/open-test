@@ -2,7 +2,7 @@
 
 CAstGpio::CAstGpio()
 {
-
+	this->set_gpio_base(AST_GPIO_BASE);
 }
 
 CAstGpio::~CAstGpio()
