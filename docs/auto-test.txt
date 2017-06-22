@@ -1,0 +1,56 @@
+
+
+1.Issues that need resolving：
+To ensure that from the boot hardware to the software a series of hardware and software are fully in place and ready.
+
+
+2．Device status detection Purpose: to ensure that the system hardware environment with the normal working state and speed.
+
+CPU frequency, core number of automatic detection
+MEM frequency, SIZE, bandwidth automatic detection
+Hard disk number, size, read and write speed, automatic detection
+All PCI devices are in place for detection.
+Focus on PCI device register level detection. (FPGA, LAN, GPU, VGA,)
+Switch status detection,
+Network channel normal detection (all nodes ping each other), each node communication speed is normal.
+
+
+3．Operating System Level Detection Purpose: To ensure that the operating system level has entered the normal working condition.
+ Essential process detection,
+ Essential services testing,
+ The necessary read and write and operation permission detection,
+T he necessary system library testing,
+　　　
+4．Driver in-place detection Purpose: Ensure that all driver-level software has entered the normal working state
+Whether the system operating the driver is in place,
+Key drivers (FPGA, GPU, LAN),
+Has installed detection, version information detection, switch read and write detection, and speed detection,
+   Hardware and software coordinated detection, and hardware status information detection.
+
+6．Software program prerequisite condition detection: destination to determine the software program has been working with the state.
+Whether the software process to open the automatic detection,
+Whether the process daemon is present or not.
+Software / hardware watchdog
+Database software, their respective third-party software,
+Whether it has been started and running in the normal state.
+　　
+５．[Optional] to complete the system after the system automatically up and down, restart to do the second test,
+So, the system after the start of their own automatic detection and mutual communication detection,
+Can ensure that the system modules and system software, drivers, applications, guardian
+Have entered the normal working condition.
+
+6．error report:
+Hardware part of the error report: power, computing, switching, storage,
+    (Cpu, mem, hdd, lan, fpga, gpu, vga) - (exist, count, size, speed, error)
+Drive part of the error report: (exist, open, read, write, close, dma)
+System part error report: (interupt, error, process, service, lib)
+Application Partial Error Report: (...)
+
+7．Automatic repair:
+  Hardware: reboot, power up and down. The The Repair try
+System: reboot, power up and down. The The Repair try
+Drive: uninstall, load, restart the device. The The try
+Application: KILL, reload. The The try
+
+After the self-test, error reporting, automatic repair, 
+enhance and ensure that the system running the hardware and software environment is normal.

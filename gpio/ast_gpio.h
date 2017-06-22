@@ -3,55 +3,41 @@
 
 #include "sio.h"
 #include "gpio.h"
+#include <string.h>
+#include <ctype.h>
 
 #define LPC2AHB_LDN 0x0D
 #define AST_GPIO_BASE 0x1E780000
+#define MAXIMUM_GPIO 216
 
-SioAndOr gpio_read_tab[]
+typedef struct AstGpioMapStruct
 {
-	//unlock
-	//active
-	{LPC2AHB_LDN,0xF0,0x00,0x1E,0xFF},//write gpio address
-	{LPC2AHB_LDN,0xF1,0x00,0x78,0xFF},
-	{LPC2AHB_LDN,0xF2,0x00,0x00,0xFF},
-	{LPC2AHB_LDN,0xF3,0x00,0x00,0xFF},
-	{LPC2AHB_LDN,0xF8,0xFC,0x02,0xFF},//Write Mode
-	{LPC2AHB_LDN,0xFE,0xFF,0x00,0xFF},//Fire Read
-	{LPC2AHB_LDN,0xF4,0xFF,0x00,0xFF},//Read data
-	{LPC2AHB_LDN,0xF5,0xFF,0x00,0xFF},
-	{LPC2AHB_LDN,0xF6,0xFF,0x00,0xFF},
-	{LPC2AHB_LDN,0xF7,0xFF,0x00,0xFF},
-	//lock
-};
-
-SioAndOr gpio_write_tab[]
-{
-	//unlock
-	//active
-	{LPC2AHB_LDN,0xF0,0x00,0x1E,0xFF},//write gpio address
-	{LPC2AHB_LDN,0xF1,0x00,0x78,0xFF},
-	{LPC2AHB_LDN,0xF2,0x00,0x00,0xFF},
-	{LPC2AHB_LDN,0xF3,0x00,0x00,0xFF},
-	{LPC2AHB_LDN,0xF8,0xFC,0x02,0xFF},//Write Mode
-	{LPC2AHB_LDN,0xF4,0xFF,0x00,0xFF},
-	{LPC2AHB_LDN,0xF5,0xFF,0x00,0xFF},
-	{LPC2AHB_LDN,0xF6,0xFF,0x00,0xFF},
-	{LPC2AHB_LDN,0xF7,0xFF,0x00,0xFF},
-	{LPC2AHB_LDN,0xFE,0x00,0xCF,0xFF},//Fire wrtie
-	//lock
-};
+	const char* group_name;//A-Z
+	unsigned int data; //data register
+	unsigned int direction;
+	unsigned int interrupt_enable;
+	unsigned int interrupt_sensitivity_type0;//interrupt_sensitivity
+	unsigned int interrupt_sensitivity_type1;
+	unsigned int interrupt_sensitivity_type2;
+	unsigned int interrupt_status;
+	unsigned int reset_tolerant;
+	unsigned int debouncing;
+	unsigned int input_mask;
+}AstGpioMap;
 
 class CAstGpio: public Cast, public Cgpio
 {
 public:
 	CAstGpio();
 	~CAstGpio();
+	int get_number(char * pin_name);//"A0-AB7"
 	bool is_exist(int pin);// 
 	void list_gpio();
 	int parse(int pin);
 	int set_native(int pin);
 	int set_gpi(int pin);
 	int set_gpo(int pin,int high_low);//high_low: GPO_LOW ,GPO_HIGH
+
 };
 
 #endif

@@ -109,7 +109,7 @@ int main()
 {
 	printf("io.cpp int main()\n");
 	Cio  Cio;
-	Cio.list();
+	//Cio.list();
 	return 0;
 }
 #endif
