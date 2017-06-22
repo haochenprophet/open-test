@@ -12,16 +12,19 @@
 
 typedef struct AstGpioMapStruct
 {
-	const char* group_name;//A-Z
+	const char* group_name;//A0-ZZ7
 	unsigned int data; //data register
 	unsigned int direction;
 	unsigned int interrupt_enable;
 	unsigned int interrupt_sensitivity_type0;//interrupt_sensitivity
 	unsigned int interrupt_sensitivity_type1;
 	unsigned int interrupt_sensitivity_type2;
-	unsigned int interrupt_status;
+	unsigned int interrupt_status;	
 	unsigned int reset_tolerant;
-	unsigned int debouncing;
+	unsigned int debounce1;
+	unsigned int debounce2;
+	unsigned int cmd_src0;
+	unsigned int cmd_src1;
 	unsigned int input_mask;
 }AstGpioMap;
 
