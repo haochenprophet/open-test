@@ -10,6 +10,20 @@
 #define AST_GPIO_BASE 0x1E780000
 #define MAXIMUM_GPIO 216
 
+typedef unsigned int  DataType;
+typedef unsigned long AddrType;//register Address Type
+
+typedef struct CommonRegisterStruct
+{
+	AddrType addr;
+	DataType data;
+	DataType and_data;
+	DataType or_data;
+	const char*  name;
+	const char*  fun;
+	const char*  desp;
+}CommonRegister;
+
 typedef struct AstGpioMapStruct
 {
 	const char* group_name;//A0-ZZ7
