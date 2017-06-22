@@ -10,6 +10,8 @@
 #define AST_GPIO_BASE 0x1E780000
 #define MAXIMUM_GPIO 216
 
+#define UNKNOW_S "Unknow" //string
+
 typedef unsigned int  DataType;
 typedef unsigned long AddrType;//register Address Type
 
@@ -27,19 +29,19 @@ typedef struct CommonRegisterStruct
 typedef struct AstGpioMapStruct
 {
 	const char* group_name;//A0-ZZ7
-	unsigned int data; //data register
-	unsigned int direction;
-	unsigned int interrupt_enable;
-	unsigned int interrupt_sensitivity_type0;//interrupt_sensitivity
-	unsigned int interrupt_sensitivity_type1;
-	unsigned int interrupt_sensitivity_type2;
-	unsigned int interrupt_status;	
-	unsigned int reset_tolerant;
-	unsigned int debounce1;
-	unsigned int debounce2;
-	unsigned int cmd_src0;
-	unsigned int cmd_src1;
-	unsigned int input_mask;
+	CommonRegister data; //data register
+	CommonRegister direction;
+	CommonRegister interrupt_enable;
+	CommonRegister interrupt_sensitivity_type0;//interrupt_sensitivity
+	CommonRegister interrupt_sensitivity_type1;
+	CommonRegister interrupt_sensitivity_type2;
+	CommonRegister interrupt_status;	
+	CommonRegister reset_tolerant;
+	CommonRegister debounce1;
+	CommonRegister debounce2;
+	CommonRegister cmd_src0;
+	CommonRegister cmd_src1;
+	CommonRegister input_mask;
 }AstGpioMap;
 
 class CAstGpio: public Cast, public Cgpio
