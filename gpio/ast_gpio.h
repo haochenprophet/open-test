@@ -11,9 +11,13 @@
 #define MAXIMUM_GPIO 216
 
 #define UNKNOW_S "Unknow" //string
+#define NULL_S (const char*) 0//string
 
 typedef unsigned int  DataType;
 typedef unsigned long AddrType;//register Address Type
+
+#define NO_AND (DataType)0xFFFFFFFF
+#define NO_OR 0
 
 typedef struct CommonRegisterStruct
 {
@@ -43,6 +47,12 @@ typedef struct AstGpioMapStruct
 	CommonRegister cmd_src1;
 	CommonRegister input_mask;
 }AstGpioMap;
+
+//extern from ast_chips_register.cpp
+extern SioAndOr gpio_read_tab[];
+extern SioAndOr gpio_write_tab[];
+extern AstGpioMap parallel_gpio_map_tab[];
+extern AstGpioMap serial_gpio_map_tab[];
 
 class CAstGpio: public Cast, public Cgpio
 {
