@@ -1,5 +1,9 @@
 sh sync.sh
 
+cd object
+make
+cd ..
+
 cd io
 make
 cd ..
