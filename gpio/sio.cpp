@@ -103,6 +103,7 @@ int Csio::and_or(SioAndOr *p,int count)
 	return 0;
 }
 
+
 int Csio::modfiy(SioAndOr *dest,SioAndOr *src)
 {
 	if(dest->ldn==src->ldn&&dest->reg==src->reg)
@@ -119,6 +120,49 @@ int Csio::modfiy(SioAndOr *dest,int count,SioAndOr *src)
 	for(int n=0;n<count;n++)
 		this->modfiy(&dest[n],src);
 	return 0;	
+}
+
+int Csio::modfiy(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data)
+{
+	if(dest->ldn==ldn&&dest->reg==reg)
+	{
+		dest->and_data=and_data;
+		dest->or_data=or_data;
+		return 0;
+	}
+	return -1;
+}
+
+int Csio::modfiy(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data)
+{
+	for(int n=0;n<count;n++)
+		this->modfiy(&dest[n],ldn,reg,and_data,or_data);
+	return 0;	
+}
+
+int Csio::get_data(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char *pdata)
+{
+	if(dest->ldn==ldn&&dest->reg==reg)
+	{
+		*pdata=dest->data;
+		return 0;
+	}
+
+	return -1; 
+}
+
+int Csio::get_data(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char *pdata)
+{
+	int n;
+	for(n=0;n<count;n++)
+	{
+		if(this->get_data(&dest[n],ldn,reg,pdata)) continue;
+		break;
+	}
+
+	if(n>=count) return -1;//get fail
+
+	return 0;
 }
 
 int Cite::unlock()

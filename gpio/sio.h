@@ -84,6 +84,10 @@ public:
 	int and_or(SioAndOr *p,int count);
 	int modfiy(SioAndOr *dest,SioAndOr *src);
 	int modfiy(SioAndOr *dest,int count,SioAndOr *src);
+	int modfiy(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data);
+	int modfiy(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data);
+	int get_data(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char *pdata);
+	int get_data(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char *pdata);
 };
 
 class Cite:public Csio //ITE

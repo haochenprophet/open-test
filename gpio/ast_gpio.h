@@ -75,6 +75,7 @@ public:
 	int set_map(int parallel_serial=1);//parallel_serial?parallel :serial
 	int get_number(char * pin_name);//"A0-AB7"
 	bool is_exist(int pin);//
+	int gpio_read(CommonRegister *p);
 	int gpio_read(AstGpioMap *p);
 	void list_gpio();
 	int parse(int pin);

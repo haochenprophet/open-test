@@ -70,11 +70,49 @@ bool CAstGpio::is_exist(int pin)//
 	return true;
 }
 
+
+int CAstGpio::gpio_read(CommonRegister *p)
+{
+	unsigned char data,reg;
+	if(p->addr>=0xFFFF) return -1; //Unavailable address 
+
+	this->modfiy(gpio_read_tab,gpio_read_tab_count,LPC2AHB_LDN,0xF3,0x00,(unsigned char)(p->addr&0xFC)); //set direction address 
+	this->modfiy(gpio_read_tab,gpio_read_tab_count,LPC2AHB_LDN,0xF2,0x00,(unsigned char)(p->addr>>8&0xFF));
+
+	this->and_or(gpio_read_tab,gpio_read_tab_count);
+
+	reg=0xF7-(unsigned char)(p->addr&0x3);
+	if(this->get_data(gpio_read_tab,gpio_read_tab_count,LPC2AHB_LDN,reg,&data)) return -1;
+	
+	p->data=data;
+	return 0;
+}
+
+
 int CAstGpio::gpio_read(AstGpioMap *p)
 {
-	
 
+	int backup_unlock_flag=this->unlock_flag;
+	this->unlock_flag=0;
 
+	this->unlock();
+
+	this->gpio_read(&p->data);
+	this->gpio_read(&p->direction);
+	this->gpio_read(&p->interrupt_enable);
+	this->gpio_read(&p->interrupt_sensitivity_type0);
+	this->gpio_read(&p->interrupt_sensitivity_type1);
+	this->gpio_read(&p->interrupt_sensitivity_type2);
+	this->gpio_read(&p->interrupt_status);
+	this->gpio_read(&p->reset_tolerant);
+	this->gpio_read(&p->debounce1);
+	this->gpio_read(&p->debounce2);
+	this->gpio_read(&p->cmd_src0);
+	this->gpio_read(&p->cmd_src1);
+	this->gpio_read(&p->input_mask);
+
+	this->lock();
+	this->unlock_flag=backup_unlock_flag;
 	return 0;
 }
 
