@@ -118,15 +118,31 @@ int CAstGpio::gpio_read(AstGpioMap *p)
 
 void CAstGpio::list_gpio()
 {
+
+}
+
+int CAstGpio::parse(CommonRegister *p,int bit ,char * s0,char * s1) //bit[x]=0:printf-s0  ,bit[x]=0:printf-s1
+{
+	if (p->data&(1<<bit)) printf("%s",s1);
+	else  printf("%s",s0);
+	return 0;
+}
+
+int CAstGpio::parse(AstGpioMap p,int bit)
+{
+
+
+	return 0;
 }
 
 int CAstGpio::parse(int pin)
 {
-	int group=pin/8;
+	int group=pin/8;//in map tab
 	int bit=pin%8;
 
 	if(group>=this->map_len) return -1;//pin not exist in map tab
 
+	this->gpio_read(&this->map[group]);
 	
 	return 0;
 }
