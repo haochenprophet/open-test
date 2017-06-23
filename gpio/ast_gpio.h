@@ -79,7 +79,7 @@ public:
 	int gpio_read(AstGpioMap *p);
 	void list_gpio();
 	int parse(CommonRegister *p,int bit ,char * s0,char * s1); //bit[x]=0:printf-s0  ,bit[x]=0:printf-s1
-	int parse(AstGpioMap p,int bit);
+	int parse(AstGpioMap *p,int bit);
 	int parse(int pin);
 	int parse(char * pin_name);
 	int set_native(int pin);

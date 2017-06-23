@@ -118,20 +118,33 @@ int CAstGpio::gpio_read(AstGpioMap *p)
 
 void CAstGpio::list_gpio()
 {
-
+	for(int n=0;n<MAXIMUM_GPIO;n++)
+		this->parse(n);
 }
 
 int CAstGpio::parse(CommonRegister *p,int bit ,char * s0,char * s1) //bit[x]=0:printf-s0  ,bit[x]=0:printf-s1
 {
+	if(p->addr>=0xFFFF) return -1;//Unavailable address 
 	if (p->data&(1<<bit)) printf("%s",s1);
 	else  printf("%s",s0);
 	return 0;
 }
 
-int CAstGpio::parse(AstGpioMap p,int bit)
+int CAstGpio::parse(AstGpioMap *p,int bit)
 {
-
-
+	this->parse(&p->direction,bit,(char *)"Input\t",(char*)"Output\t");	
+	this->parse(&p->data,bit,(char *)"Low\t",(char*)"High\t");
+	this->parse(&p->interrupt_enable,bit,(char *)"Input\t",(char*)"Output\t");
+	this->parse(&p->interrupt_sensitivity_type0,bit,(char *)"interrupt_sensitivity_type0=0\t",(char*)"interrupt_sensitivity_type0=1\t");
+	this->parse(&p->interrupt_sensitivity_type1,bit,(char *)"interrupt_sensitivity_type1=0\t",(char*)"interrupt_sensitivity_type1=1\t");
+	this->parse(&p->interrupt_sensitivity_type2,bit,(char *)"interrupt_sensitivity_type2=0\t",(char*)"interrupt_sensitivity_type2=1\t");
+	this->parse(&p->interrupt_status,bit,(char *)"interrupt_status=0\t",(char*)"interrupt_status=1\t");
+	this->parse(&p->reset_tolerant,bit,(char *)"reset_tolerant=0\t",(char*)"reset_tolerant=1\t");
+	this->parse(&p->debounce1,bit,(char *)"debounce1=0\t",(char*)"debounce1=1\t");
+	this->parse(&p->debounce2,bit,(char *)"debounce2=0\t",(char*)"debounce2=1\t");
+	this->parse(&p->cmd_src0,bit,(char *)"cmd_src0=0\t",(char*)"cmd_src0=1\t");
+	this->parse(&p->cmd_src1,bit,(char *)"cmd_src1=0\t",(char*)"cmd_src1=1\t");
+	this->parse(&p->input_mask,bit,(char *)"input_mask=0\t",(char*)"input_mask=1\t");
 	return 0;
 }
 
@@ -142,15 +155,22 @@ int CAstGpio::parse(int pin)
 
 	if(group>=this->map_len) return -1;//pin not exist in map tab
 
-	this->gpio_read(&this->map[group]);
-	
+	if(this->gpio_read(&this->map[group])); return -1;
+
+	printf("GPIO%s%d\t",this->map[group].group_name,bit);
+	this->parse(&this->map[group],bit);
+	printf("\n");//out entry
+
 	return 0;
 }
 
 int CAstGpio::parse(char * pin_name)
 {
-
-
+	int pin=this->get_number(pin_name);
+	if(pin>=0) //0-MAXGPIO
+	{
+		if(this->parse(pin)) return -1;
+	}
 	return 0;
 }
 
