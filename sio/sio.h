@@ -80,8 +80,10 @@ public:
 	unsigned char read(unsigned char ldn,unsigned char reg);
 	int write(unsigned char ldn,unsigned char reg,unsigned char data);
 	int active(unsigned char ldn,unsigned char bit=1);
-	int and_or(SioAndOrStruct *p);
-	int and_or(SioAndOrStruct *p,int count);
+	int and_or(SioAndOr *p);
+	int and_or(SioAndOr *p,int count);
+	int modfiy(SioAndOr *dest,SioAndOr *src);
+	int modfiy(SioAndOr *dest,int count,SioAndOr *src);
 };
 
 class Cite:public Csio //ITE

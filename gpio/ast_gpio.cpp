@@ -3,11 +3,40 @@
 CAstGpio::CAstGpio()
 {
 	this->set_gpio_base(AST_GPIO_BASE);
+
+	this->parallel=parallel_gpio_map_tab;//can change other register tab
+	this->serial=serial_gpio_map_tab;
+
+	this->parallel_len=parallel_gpio_map_tab_count;
+	this->serial_len=serial_gpio_map_tab_count;
+	//printf("parallel_len=%d,serial_len=%d\n",this->parallel_len,this->serial_len);//test ok
+
+	this->parallel_serial=1;//parallel_serial?parallel :serial
+	this->map=this->parallel;
+	this->map_len=this->parallel_len;
 }
 
 CAstGpio::~CAstGpio()
 {
 
+}
+
+int CAstGpio::set_map(int parallel_serial)//set register map
+{
+	this->parallel_serial=parallel_serial;
+
+	if(parallel_serial)
+	{
+		this->map=this->parallel;//parallel_serial?parallel :serial
+		this->map_len=this->parallel_len;
+	}
+	else
+	{
+		this->map=this->serial;
+		this->map_len=this->serial_len;
+	}
+
+	return 0;
 }
 
 int CAstGpio::get_number(char * pin_name)//"A0-AB7"
@@ -41,29 +70,49 @@ bool CAstGpio::is_exist(int pin)//
 	return true;
 }
 
-void CAstGpio::list_gpio()
+int CAstGpio::gpio_read(AstGpioMap *p)
 {
 	
+
+
+	return 0;
+}
+
+void CAstGpio::list_gpio()
+{
 }
 
 int CAstGpio::parse(int pin)
 {
+	int group=pin/8;
+	int bit=pin%8;
 
+	if(group>=this->map_len) return -1;//pin not exist in map tab
+
+	
+	return 0;
+}
+
+int CAstGpio::parse(char * pin_name)
+{
+
+
+	return 0;
 }
 
 int CAstGpio::set_native(int pin)
 {
-
+	return 0;
 }
 
 int CAstGpio::set_gpi(int pin)
 {
-
+	return 0;
 }
 
 int CAstGpio::set_gpo(int pin,int high_low)//high_low: GPO_LOW ,GPO_HIGH
 {
-
+	return 0;
 }
 
 #if ast_gpio_TEST

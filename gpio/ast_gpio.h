@@ -54,15 +54,31 @@ extern SioAndOr gpio_write_tab[];
 extern AstGpioMap parallel_gpio_map_tab[];
 extern AstGpioMap serial_gpio_map_tab[];
 
+extern const int gpio_read_tab_count;
+extern const int gpio_write_tab_count;
+extern const int parallel_gpio_map_tab_count;
+extern const int serial_gpio_map_tab_count;
+
 class CAstGpio: public Cast, public Cgpio
 {
 public:
+	AstGpioMap * parallel;//parallel_gpio_map_tab[]
+	AstGpioMap * serial;//serial_gpio_map_tab[]
+	AstGpioMap * map;
+	int parallel_serial;//use map table  parallel_serial?parallel :serial
+	int parallel_len;//=parallel_gpio_map_tab_count
+	int serial_len;	//=serial_gpio_map_tab_count
+	int map_len;
+public:
 	CAstGpio();
 	~CAstGpio();
+	int set_map(int parallel_serial=1);//parallel_serial?parallel :serial
 	int get_number(char * pin_name);//"A0-AB7"
-	bool is_exist(int pin);// 
+	bool is_exist(int pin);//
+	int gpio_read(AstGpioMap *p);
 	void list_gpio();
 	int parse(int pin);
+	int parse(char * pin_name);
 	int set_native(int pin);
 	int set_gpi(int pin);
 	int set_gpo(int pin,int high_low);//high_low: GPO_LOW ,GPO_HIGH

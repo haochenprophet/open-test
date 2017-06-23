@@ -77,7 +77,7 @@ int Csio::active(unsigned char ldn,unsigned char bit)
 	return 0;
 }
 
-int Csio::and_or(SioAndOrStruct *p)
+int Csio::and_or(SioAndOr *p)
 {
 	if(this->unlock_flag&&this->unlock()) return -1;
 
@@ -96,11 +96,29 @@ int Csio::and_or(SioAndOrStruct *p)
 	return 0;
 }
 
-int Csio::and_or(SioAndOrStruct *p,int count)
+int Csio::and_or(SioAndOr *p,int count)
 {
 	for(int n=0;n<count;n++)
 		this->and_or(&p[n]);
 	return 0;
+}
+
+int Csio::modfiy(SioAndOr *dest,SioAndOr *src)
+{
+	if(dest->ldn==src->ldn&&dest->reg==src->reg)
+	{
+		dest->and_data=src->and_data;
+		dest->or_data=src->or_data;
+		return 0;
+	}
+	return -1;
+}
+
+int Csio::modfiy(SioAndOr *dest,int count,SioAndOr *src)
+{
+	for(int n=0;n<count;n++)
+		this->modfiy(&dest[n],src);
+	return 0;	
 }
 
 int Cite::unlock()
