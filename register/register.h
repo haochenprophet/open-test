@@ -1,6 +1,9 @@
 #ifndef REGISTER_H
 #define REGISTER_H
 
+#define PRT_ERROR	printf("Error:%s %s %d\n",__FILE__,__FUNCTION__,__LINE__);
+#define PRT_FUN  	printf("%s %s %d\n",__FILE__,__FUNCTION__,__LINE__);
+
 #define UNKNOW_S "Unknow" //string
 #define NULL_S (const char*) 0//string
 
