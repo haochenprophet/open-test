@@ -4,6 +4,10 @@ cd object
 make
 cd ..
 
+cd register
+make
+cd ..
+
 cd io
 make
 cd ..
