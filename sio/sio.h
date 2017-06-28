@@ -86,6 +86,8 @@ public:
 	int modfiy(SioAndOr *dest,int count,SioAndOr *src);
 	int modfiy(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data);
 	int modfiy(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data);
+	int modfiy(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data,unsigned char data);
+	int modfiy(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data,unsigned char data);
 	int get_data(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char *pdata);
 	int get_data(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char *pdata);
 	int sync(SioAndOr *dest,SioAndOr *src);//dest->data=src->data;

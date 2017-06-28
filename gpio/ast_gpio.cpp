@@ -76,13 +76,15 @@ int CAstGpio::gpio_read(CommonRegister *p)
 	unsigned char data,reg;
 	if(p->addr>=0xFFFF) return -1; //Unavailable address 
 
-	this->modfiy(gpio_read_tab,gpio_read_tab_count,LPC2AHB_LDN,0xF3,0x00,(unsigned char)(p->addr&0xFC)); //set direction address 
-	this->modfiy(gpio_read_tab,gpio_read_tab_count,LPC2AHB_LDN,0xF2,0x00,(unsigned char)(p->addr>>8&0xFF));
+	this->modfiy(ahb_bus_read_tab,ahb_bus_read_tab_count,LPC2AHB_LDN,0xF3,0x00,(unsigned char)(p->addr&0xFC)); //set direction address 
+	this->modfiy(ahb_bus_read_tab,ahb_bus_read_tab_count,LPC2AHB_LDN,0xF2,0x00,(unsigned char)(p->addr>>8&0xFF));
+	this->modfiy(ahb_bus_read_tab,ahb_bus_read_tab_count,LPC2AHB_LDN,0xF1,0x00,(unsigned char)(AST_GPIO_BASE>>16&0xFF)); //set AST_GPIO_BASE address 
+	this->modfiy(ahb_bus_read_tab,ahb_bus_read_tab_count,LPC2AHB_LDN,0xF0,0x00,(unsigned char)(AST_GPIO_BASE>>24&0xFF));
 
-	this->and_or(gpio_read_tab,gpio_read_tab_count);
+	this->and_or(ahb_bus_read_tab,ahb_bus_read_tab_count);
 
 	reg=0xF7-(unsigned char)(p->addr&0x3);
-	if(this->get_data(gpio_read_tab,gpio_read_tab_count,LPC2AHB_LDN,reg,&data)) return -1;
+	if(this->get_data(ahb_bus_read_tab,ahb_bus_read_tab_count,LPC2AHB_LDN,reg,&data)) return -1;
 	
 	p->data=data;
 	return 0;
@@ -182,14 +184,14 @@ int CAstGpio::gpio_write(CommonRegister *p)
 	data=(unsigned char)p->data; //save data befor read
 	if(this->gpio_read(p)) return -1; //get register data to read_tab,and keep other gpio pin setting,
 
-	//sync address data to gpio_write_tab
-	this->sync(gpio_write_tab,gpio_write_tab_count,gpio_read_tab,gpio_read_tab_count,skip_sync_tab,skip_sync_tab_count);
+	//sync address data to ahb_bus_write_tab
+	this->sync(ahb_bus_write_tab,ahb_bus_write_tab_count,ahb_bus_read_tab,ahb_bus_read_tab_count,skip_sync_tab,skip_sync_tab_count);
 
 	reg=0xF7-(unsigned char)(p->addr&0x3);
 	p->data|=data;// set change bits
-	this->modfiy(gpio_write_tab,gpio_write_tab_count,LPC2AHB_LDN,reg,0xFF,(unsigned char)p->data);
+	this->modfiy(ahb_bus_write_tab,ahb_bus_write_tab_count,LPC2AHB_LDN,reg,0xFF,0x00,(unsigned char)p->data);
 	
-	this->and_or(gpio_write_tab,gpio_write_tab_count);//write tab_data to register
+	this->and_or(ahb_bus_write_tab,ahb_bus_write_tab_count);//write tab_data to register
 
 	return 0;
 }

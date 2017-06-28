@@ -3,7 +3,7 @@
 
 #include "ast_chips_register.h"
 
-SioAndOr gpio_read_tab[]
+SioAndOr ahb_bus_read_tab[]
 {
 	//unlock
 	//active
@@ -19,9 +19,9 @@ SioAndOr gpio_read_tab[]
 	{LPC2AHB_LDN,0xF7,0xFF,0x00,0xFF},
 	//lock
 };
-const int gpio_read_tab_count =sizeof(gpio_read_tab)/sizeof(SioAndOr);
+const int ahb_bus_read_tab_count =sizeof(ahb_bus_read_tab)/sizeof(SioAndOr);
 
-SioAndOr gpio_write_tab[]
+SioAndOr ahb_bus_write_tab[]
 {
 	//unlock
 	//active
@@ -37,7 +37,7 @@ SioAndOr gpio_write_tab[]
 	{LPC2AHB_LDN,0xFE,0x00,0xCF,0xFF},//Fire wrtie
 	//lock
 };
-const int gpio_write_tab_count=sizeof(gpio_write_tab)/sizeof(SioAndOr);
+const int ahb_bus_write_tab_count=sizeof(ahb_bus_write_tab)/sizeof(SioAndOr);
 
 SioAndOr skip_sync_tab[]
 {

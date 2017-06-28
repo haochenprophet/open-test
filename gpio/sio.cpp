@@ -140,6 +140,25 @@ int Csio::modfiy(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,un
 	return 0;	
 }
 
+int Csio::modfiy(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data,unsigned char data)
+{
+	if(dest->ldn==ldn&&dest->reg==reg)
+	{
+		dest->and_data=and_data;
+		dest->or_data=or_data;
+		dest->data=data;
+		return 0;
+	}
+	return -1;
+}
+
+int Csio::modfiy(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data,unsigned char data)
+{
+	for(int n=0;n<count;n++)
+		this->modfiy(&dest[n],ldn,reg,and_data,or_data,data);
+	return 0;	
+}
+
 int Csio::get_data(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char *pdata)
 {
 	if(dest->ldn==ldn&&dest->reg==reg)
