@@ -171,6 +171,8 @@ int Csio::sync(SioAndOr *dest,SioAndOr *src)
 	if(dest->ldn==src->ldn&&dest->reg==src->reg)
 	{
 		dest->data=src->data;
+		dest->and_data=src->and_data;
+		dest->or_data=src->or_data;
 		return 0;
 	}
 	return -1;
