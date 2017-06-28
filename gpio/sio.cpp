@@ -166,14 +166,24 @@ int Csio::get_data(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,
 }
 
 
-int Csio::sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count) //src->dest
+int Csio::sync(SioAndOr *dest,SioAndOr *src)
+{
+	if(dest->ldn==src->ldn&&dest->reg==src->reg)
+	{
+		dest->data=src->data;
+		return 0;
+	}
+	return -1;
+}
+
+int Csio::sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count) //dest->data=src->data;
 {
 	int i,n;
 	for(i=0;i<src_count;i++)
 	{
 		for(n=0;n<dest_count;n++)
 		{
-			this->modfiy(&dest[n],&src[i]);
+			this->sync(&dest[n],&src[i]);
 		}
 	}
 }

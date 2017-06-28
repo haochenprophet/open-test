@@ -88,7 +88,8 @@ public:
 	int modfiy(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data);
 	int get_data(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char *pdata);
 	int get_data(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char *pdata);
-	int sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count);//src->dest
+	int sync(SioAndOr *dest,SioAndOr *src);//dest->data=src->data;
+	int sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count);//dest[n]->data=src[i]->data;
 };
 
 class Cite:public Csio //ITE
