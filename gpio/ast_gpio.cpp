@@ -189,7 +189,7 @@ int CAstGpio::gpio_write(CommonRegister *p)
 
 	reg=0xF7-(unsigned char)(p->addr&0x3);
 	p->data|=data;// set change bits
-	this->modfiy(ahb_bus_write_tab,ahb_bus_write_tab_count,LPC2AHB_LDN,reg,0xFF,0x00,(unsigned char)p->data);
+	this->modfiy(ahb_bus_write_tab,ahb_bus_write_tab_count,LPC2AHB_LDN,reg,0xFF,(unsigned char)p->data);//or_data = p->data
 	
 	this->and_or(ahb_bus_write_tab,ahb_bus_write_tab_count);//write tab_data to register
 
