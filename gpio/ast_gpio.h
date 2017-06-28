@@ -50,6 +50,21 @@ typedef struct AstGpioMapStruct
 	CommonRegister input_mask;
 }AstGpioMap;
 
+typedef struct PinControlBitsStruct
+{
+	AddrType addr;
+	int bit_n;//bit number 0-64 
+	int bit_data;// 0-1
+}PinCtrl;
+
+#define MAX_CTRL_COUNT 5
+typedef struct CommonPinStruct
+{
+	const char*  pin_name;
+	const char*  fun_name;
+	PinCtrl ctrl[MAX_CTRL_COUNT]; //1-MAX_CTRL_COUNT ctrl bits
+}CommonPin;
+
 //extern from ast_chips_register.cpp
 extern SioAndOr gpio_read_tab[];
 extern SioAndOr gpio_write_tab[];
