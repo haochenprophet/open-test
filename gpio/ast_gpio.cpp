@@ -42,7 +42,8 @@ int CAstGpio::set_map(int parallel_serial)//set register map
 int CAstGpio::get_number(char * pin_name)//"A0-AB7"
 {
 	int offset0=0,offset1=0,offset2=0,len;
-	
+	if(!pin_name) return -1;
+
 	len=strlen(pin_name);
 	
 	if(len==3)//"AA0-ZZ7"
@@ -74,6 +75,7 @@ bool CAstGpio::is_exist(int pin)//
 int CAstGpio::gpio_read(CommonRegister *p)
 {
 	unsigned char data,reg;
+	if(!p) return -1;
 	if(p->addr>=0xFFFF) return -1; //Unavailable address 
 
 	this->modfiy(ahb_bus_read_tab,ahb_bus_read_tab_count,LPC2AHB_LDN,0xF3,0x00,(unsigned char)(p->addr&0xFC)); //set direction address 
@@ -92,7 +94,7 @@ int CAstGpio::gpio_read(CommonRegister *p)
 
 int CAstGpio::gpio_read(AstGpioMap *p)
 {
-
+	if(!p) return -1;
 	int backup_unlock_flag=this->unlock_flag;
 	this->unlock_flag=0;
 
@@ -125,6 +127,7 @@ void CAstGpio::list_gpio()
 
 int CAstGpio::parse(CommonRegister *p,int bit ,char * s0,char * s1) //bit[x]=0:printf-s0  ,bit[x]=0:printf-s1
 {
+	if(!p) return -1;
 	if(p->addr>=0xFFFF) return -1;//Unavailable address 
 	if (p->data&(1<<bit)) printf("%s",s1);
 	else  printf("%s",s0);
@@ -133,6 +136,7 @@ int CAstGpio::parse(CommonRegister *p,int bit ,char * s0,char * s1) //bit[x]=0:p
 
 int CAstGpio::parse(AstGpioMap *p,int bit)
 {
+	if(!p) return -1;
 	this->parse(&p->direction,bit,(char *)"Input\t",(char*)"Output\t");	
 	this->parse(&p->data,bit,(char *)"Low\t",(char*)"High\t");
 	this->parse(&p->interrupt_enable,bit,(char *)"Input\t",(char*)"Output\t");
@@ -167,6 +171,7 @@ int CAstGpio::parse(int pin)
 
 int CAstGpio::parse(char * pin_name)
 {
+	if(!pin_name) return -1;
 	int pin=this->get_number(pin_name);
 	if(pin>=0) //0-MAXGPIO
 	{
@@ -178,7 +183,7 @@ int CAstGpio::parse(char * pin_name)
 int CAstGpio::gpio_write(CommonRegister *p)
 {
 	unsigned char data,reg;
-
+	if(!p) return -1;
 	if(p->addr>=0xFFFF) return -1; //Unavailable address 
 
 	data=(unsigned char)p->data; //save data befor read

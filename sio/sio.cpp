@@ -79,6 +79,7 @@ int Csio::active(unsigned char ldn,unsigned char bit)
 
 int Csio::and_or(SioAndOr *p)
 {
+	if(!p) return -1;
 	if(this->unlock_flag&&this->unlock()) return -1;
 
 	if(p->reg >= 0x30) this->isa_write(this->index_port,LDN_REG,this->data_port,p->ldn);
@@ -98,6 +99,7 @@ int Csio::and_or(SioAndOr *p)
 
 int Csio::and_or(SioAndOr *p,int count)
 {
+	if(!p) return -1;
 	for(int n=0;n<count;n++)
 		this->and_or(&p[n]);
 	return 0;
@@ -106,6 +108,7 @@ int Csio::and_or(SioAndOr *p,int count)
 
 int Csio::modfiy(SioAndOr *dest,SioAndOr *src)
 {
+	if(!(dest||src)) return -1;
 	if(dest->ldn==src->ldn&&dest->reg==src->reg)
 	{
 		dest->and_data=src->and_data;
@@ -117,13 +120,15 @@ int Csio::modfiy(SioAndOr *dest,SioAndOr *src)
 
 int Csio::modfiy(SioAndOr *dest,int count,SioAndOr *src)
 {
+	if(!dest) return -1;
 	for(int n=0;n<count;n++)
 		this->modfiy(&dest[n],src);
 	return 0;	
 }
 
 int Csio::modfiy(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data)
-{
+{ 
+	if(!dest) return -1;
 	if(dest->ldn==ldn&&dest->reg==reg)
 	{
 		dest->and_data=and_data;
@@ -135,6 +140,7 @@ int Csio::modfiy(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned cha
 
 int Csio::modfiy(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data)
 {
+	if(!dest) return -1;
 	for(int n=0;n<count;n++)
 		this->modfiy(&dest[n],ldn,reg,and_data,or_data);
 	return 0;	
@@ -142,6 +148,7 @@ int Csio::modfiy(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,un
 
 int Csio::modfiy(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data,unsigned char data)
 {
+	if(!dest) return -1;
 	if(dest->ldn==ldn&&dest->reg==reg)
 	{
 		dest->and_data=and_data;
@@ -154,6 +161,7 @@ int Csio::modfiy(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned cha
 
 int Csio::modfiy(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char and_data,unsigned char or_data,unsigned char data)
 {
+	if(!dest) return -1;
 	for(int n=0;n<count;n++)
 		this->modfiy(&dest[n],ldn,reg,and_data,or_data,data);
 	return 0;	
@@ -161,6 +169,8 @@ int Csio::modfiy(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,un
 
 int Csio::get_data(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char *pdata)
 {
+	if(!(dest||pdata)) return -1;
+
 	if(dest->ldn==ldn&&dest->reg==reg)
 	{
 		*pdata=dest->data;
@@ -173,6 +183,7 @@ int Csio::get_data(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned c
 int Csio::get_data(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char *pdata)
 {
 	int n;
+	if(!(dest||pdata)) return -1;
 	for(n=0;n<count;n++)
 	{
 		if(this->get_data(&dest[n],ldn,reg,pdata)) continue;
@@ -187,6 +198,8 @@ int Csio::get_data(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,
 
 int Csio::sync(SioAndOr *dest,SioAndOr *src)
 {
+	if(!(dest||src)) return -1;
+
 	if(dest->ldn==src->ldn&&dest->reg==src->reg)
 	{
 		dest->data=src->data;
@@ -200,6 +213,9 @@ int Csio::sync(SioAndOr *dest,SioAndOr *src)
 int Csio::sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count,SioAndOr *skip,int skip_count) //dest->data=src->data;
 {
 	int i,n;
+
+	if(!(dest||src)) return -1;
+
 	for(i=0;i<src_count;i++)
 	{
 		if(skip&&skip_count>0)
@@ -217,6 +233,7 @@ int Csio::sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count,SioAndO
 SioAndOr * Csio::find(SioAndOr *p,int count,unsigned char ldn,unsigned char reg)
 {
 	int i;
+	if(!p) return 0;
 	for(i=0;i<count;i++)
 	{
 		if(p[i].ldn==ldn&&p[i].reg==reg) return &p[i];
