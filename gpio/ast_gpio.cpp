@@ -88,7 +88,6 @@ int CAstGpio::gpio_read(CommonRegister *p)
 	return 0;
 }
 
-
 int CAstGpio::gpio_read(AstGpioMap *p)
 {
 
@@ -171,6 +170,27 @@ int CAstGpio::parse(char * pin_name)
 	{
 		if(this->parse(pin)) return -1;
 	}
+	return 0;
+}
+
+int CAstGpio::gpio_write(CommonRegister *p)
+{
+	unsigned char data,reg;
+
+	if(p->addr>=0xFFFF) return -1; //Unavailable address 
+
+	data=(unsigned char)p->data; //save data befor read
+	if(this->gpio_read(p)) return -1; //get register data to read_tab,and keep other gpio pin setting,
+
+	//sync address data to gpio_write_tab
+	this->sync(gpio_write_tab,gpio_write_tab_count,gpio_read_tab,gpio_read_tab_count,skip_sync_tab,skip_sync_tab_count);
+
+	reg=0xF7-(unsigned char)(p->addr&0x3);
+	p->data|=data;// set change bits
+	this->modfiy(gpio_write_tab,gpio_write_tab_count,LPC2AHB_LDN,reg,0xFF,(unsigned char)p->data);
+	
+	this->and_or(gpio_write_tab,gpio_write_tab_count);//write tab_data to register
+
 	return 0;
 }
 

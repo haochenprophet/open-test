@@ -89,7 +89,8 @@ public:
 	int get_data(SioAndOr *dest,unsigned char ldn,unsigned char reg,unsigned char *pdata);
 	int get_data(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,unsigned char *pdata);
 	int sync(SioAndOr *dest,SioAndOr *src);//dest->data=src->data;
-	int sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count);//dest[n]->data=src[i]->data;
+	int sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count,SioAndOr *skip,int skip_count);//dest[n]->data=src[i]->data;
+	SioAndOr * find(SioAndOr *p,int count,unsigned char ldn,unsigned char reg);	
 };
 
 class Cite:public Csio //ITE

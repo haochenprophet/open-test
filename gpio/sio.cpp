@@ -176,16 +176,32 @@ int Csio::sync(SioAndOr *dest,SioAndOr *src)
 	return -1;
 }
 
-int Csio::sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count) //dest->data=src->data;
+int Csio::sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count,SioAndOr *skip,int skip_count) //dest->data=src->data;
 {
 	int i,n;
 	for(i=0;i<src_count;i++)
 	{
+		if(skip&&skip_count>0)
+		{
+			if(this->find(skip,skip_count,src[i].ldn,src[i].reg)) continue;
+		}
+
 		for(n=0;n<dest_count;n++)
 		{
 			this->sync(&dest[n],&src[i]);
 		}
 	}
+}
+
+SioAndOr * Csio::find(SioAndOr *p,int count,unsigned char ldn,unsigned char reg)
+{
+	int i;
+	for(i=0;i<count;i++)
+	{
+		if(p[i].ldn==ldn&&p[i].reg==reg) return &p[i];
+	}
+
+	return (SioAndOr *)0;
 }
 
 int Cite::unlock()

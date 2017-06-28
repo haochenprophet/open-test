@@ -51,13 +51,16 @@ typedef struct AstGpioMapStruct
 //extern from ast_chips_register.cpp
 extern SioAndOr gpio_read_tab[];
 extern SioAndOr gpio_write_tab[];
+extern SioAndOr skip_sync_tab[];
 extern AstGpioMap parallel_gpio_map_tab[];
 extern AstGpioMap serial_gpio_map_tab[];
 
 extern const int gpio_read_tab_count;
 extern const int gpio_write_tab_count;
+extern const int skip_sync_tab_count;
 extern const int parallel_gpio_map_tab_count;
 extern const int serial_gpio_map_tab_count;
+
 
 class CAstGpio: public Cast, public Cgpio
 {
@@ -82,6 +85,7 @@ public:
 	int parse(AstGpioMap *p,int bit);
 	int parse(int pin);
 	int parse(char * pin_name);
+	int gpio_write(CommonRegister *p);
 	int set_native(int pin);
 	int set_gpi(int pin);
 	int set_gpo(int pin,int high_low);//high_low: GPO_LOW ,GPO_HIGH

@@ -39,6 +39,13 @@ SioAndOr gpio_write_tab[]
 };
 const int gpio_write_tab_count=sizeof(gpio_write_tab)/sizeof(SioAndOr);
 
+SioAndOr skip_sync_tab[]
+{
+	{LPC2AHB_LDN,0xF8,0xFF,0x00,0xFF},//write gpio address
+	{LPC2AHB_LDN,0xFE,0xFF,0x00,0xFF},	
+};
+const int skip_sync_tab_count=sizeof(skip_sync_tab)/sizeof(SioAndOr);
+
 //>=0xFFFF+0, :Unavailable address
 AstGpioMap parallel_gpio_map_tab[]
 {
