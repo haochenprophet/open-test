@@ -32,6 +32,7 @@ int Cregister::execute(CommonRegister * p,int count)
 #if REGISTER_TEST
 	printf("Cregister::execute->\n");
 #endif
+	if(!p) return -1;
 	for(int n=0;n<count;n++) this->execute(p);
 	return 0;
 }
@@ -42,6 +43,7 @@ int Cmemory_register::execute(CommonRegister * p)
 	printf("Cmemory_register::execute->\n");
 	this->display(p);//test
 #endif
+	if(!p) return -1;
 
 	return 0;
 }
@@ -52,6 +54,7 @@ int Cio_register::execute(CommonRegister * p)
 	printf("Cio_register::execute->\n");
 	this->display(p);//test
 #endif
+	if(!p) return -1;
 
 	return 0;
 }
@@ -62,6 +65,7 @@ int Csio_register::execute(CommonRegister * p)
 	printf("Csio_register::execute->\n");
 	this->display(p);//test
 #endif
+	if(!p) return -1;
 
 	return 0;
 }
@@ -72,6 +76,7 @@ int Cpci_register::execute(CommonRegister * p)
 	printf("Cpci_register::execute->\n");
 	this->display(p);//test
 #endif
+	if(!p) return -1;
 
 	return 0;
 }
@@ -82,6 +87,7 @@ int Ccpu_register::execute(CommonRegister * p)
 	printf("Ccpu_register::execute->\n");
 	this->display(p);//test
 #endif
+	if(!p) return -1;
 
 	return 0;
 }
@@ -92,6 +98,7 @@ int Cx86_register::execute(CommonRegister * p)
 	printf("Cx86_register::execute->\n");
 	this->display(p);//test
 #endif
+	if(!p) return -1;
 
 	return 0;
 }
@@ -103,6 +110,7 @@ int Carm_register::execute(CommonRegister * p)
 	printf("Carm_register::execute->\n");
 	this->display(p);//test
 #endif
+	if(!p) return -1;
 
 	return 0;
 }
@@ -113,6 +121,8 @@ int Cpower_register::execute(CommonRegister * p)
 	printf("Cpower_register::execute->\n");
 	this->display(p);//test
 #endif
+
+	if(!p) return -1;
 
 	return 0;
 }
