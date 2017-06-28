@@ -10,6 +10,8 @@
 #define AST_GPIO_BASE 0x1E780000
 #define MAXIMUM_GPIO 216
 
+#define AST_SCU_BASE 0x1E6E2000
+
 #define UNKNOW_S "Unknow" //string
 #define NULL_S (const char*) 0//string
 
