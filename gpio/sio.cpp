@@ -165,6 +165,19 @@ int Csio::get_data(SioAndOr *dest,int count,unsigned char ldn,unsigned char reg,
 	return 0;
 }
 
+
+int Csio::sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count) //src->dest
+{
+	int i,n;
+	for(i=0;i<src_count;i++)
+	{
+		for(n=0;n<dest_count;n++)
+		{
+			this->modfiy(&dest[n],&src[i]);
+		}
+	}
+}
+
 int Cite::unlock()
 {
 	this->byte_write(this->index_port,0x87);
