@@ -1,6 +1,8 @@
 #ifndef REGISTER_H
 #define REGISTER_H
 
+#include "bits.h"
+
 #define PRT_ERROR	printf("Error:%s %s %d\n",__FILE__,__FUNCTION__,__LINE__);
 #define PRT_FUN  	printf("%s %s %d\n",__FILE__,__FUNCTION__,__LINE__);
 
@@ -24,7 +26,7 @@ typedef struct CommonRegisterStruct
 	const char*  desp;
 }CommonRegister;
 
-class Cregister 
+class Cregister : public Cbits
 {
 public:
 	Cregister();

@@ -10,6 +10,7 @@ typedef struct PinControlBitsStruct
 	int bit_data;// 0-1
 	int operation;//&&,||,! ,==,!=,>,<,>=,<=,
 }PinCtrl;
+//set ,clear
 
 #define MAX_CTRL_COUNT 5
 typedef struct CommonPinStruct
