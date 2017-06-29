@@ -1,6 +1,8 @@
 #ifndef GPIO_H
 #define GPIO_H
+
 #include "io.h"
+#include "pin.h"
 
 using std::cout;
 using std::endl;
@@ -26,6 +28,5 @@ public:
 	virtual int set_gpi(int pin);
 	virtual int set_gpo(int pin,int high_low);//high_low: GPO_LOW ,GPO_HIGH
 };
-
 
 #endif//GPIO_H

@@ -7,6 +7,10 @@
 #include <sys/io.h>
 #endif
 
+#ifndef IO_DEBUG
+#define IO_DEBUG 0
+#endif
+
 #include "io.h"
 Cio::Cio()
 {

@@ -12,26 +12,6 @@
 
 #define AST_SCU_BASE 0x1E6E2000
 
-#define UNKNOW_S "Unknow" //string
-#define NULL_S (const char*) 0//string
-
-typedef unsigned int  DataType;
-typedef unsigned long AddrType;//register Address Type
-
-#define NO_AND (DataType)0xFFFFFFFF
-#define NO_OR 0
-
-typedef struct CommonRegisterStruct
-{
-	AddrType addr;
-	DataType data;
-	DataType and_data;
-	DataType or_data;
-	const char*  name;
-	const char*  fun;
-	const char*  desp;
-}CommonRegister;
-
 typedef struct AstGpioMapStruct
 {
 	const char* group_name;//A0-ZZ7
@@ -49,21 +29,6 @@ typedef struct AstGpioMapStruct
 	CommonRegister cmd_src1;
 	CommonRegister input_mask;
 }AstGpioMap;
-
-typedef struct PinControlBitsStruct
-{
-	AddrType addr;
-	int bit_n;//bit number 0-64 
-	int bit_data;// 0-1
-}PinCtrl;
-
-#define MAX_CTRL_COUNT 5
-typedef struct CommonPinStruct
-{
-	const char*  pin_name;
-	const char*  fun_name;
-	PinCtrl ctrl[MAX_CTRL_COUNT]; //1-MAX_CTRL_COUNT ctrl bits
-}CommonPin;
 
 //extern from ast_chips_register.cpp
 extern SioAndOr ahb_bus_read_tab[];

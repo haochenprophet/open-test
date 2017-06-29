@@ -1,14 +1,11 @@
 #ifndef IO_H
 #define IO_H
 
-#ifndef IO_DEBUG
-#define IO_DEBUG 0
-#endif
-
 #include <stdio.h>
 #include <iostream>
 
-class Cio
+#include "register.h"
+class Cio : public Cregister
 {
 public:
 	Cio() ;

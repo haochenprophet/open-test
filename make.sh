@@ -8,6 +8,10 @@ cd register
 make
 cd ..
 
+cd pin
+make
+cd ..
+
 cd io
 make
 cd ..
