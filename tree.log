@@ -1,0 +1,133 @@
+.
+├── allotMem
+│   ├── AllotMEM.cpp
+│   ├── AllotMEM.h
+│   └── Makefile
+├── bits
+│   ├── bits
+│   ├── bits.cpp
+│   ├── bits.h
+│   └── Makefile
+├── docs
+│   ├── auto-test.txt
+│   └── intel
+│       └── 7-series-chipset-pch-datasheet.pdf
+├── gpio
+│   ├── ast_chips_register.cpp
+│   ├── ast_chips_register.h
+│   ├── ast_gpio
+│   ├── ast_gpio.cpp
+│   ├── ast_gpio.h
+│   ├── bits.cpp
+│   ├── bits.h
+│   ├── gpio.cpp
+│   ├── gpio.h
+│   ├── intel_gpio
+│   ├── intel_gpio.cpp
+│   ├── intel_gpio.h
+│   ├── io.cpp
+│   ├── io.h
+│   ├── Makefile
+│   ├── pin.cpp
+│   ├── pin.h
+│   ├── readme.txt
+│   ├── register.cpp
+│   ├── register.h
+│   ├── sio.cpp
+│   └── sio.h
+├── io
+│   ├── bits.cpp
+│   ├── bits.h
+│   ├── io
+│   ├── io.cpp
+│   ├── io.h
+│   ├── Makefile
+│   ├── register.cpp
+│   └── register.h
+├── make.sh
+├── memory
+│   ├── bits.cpp
+│   ├── bits.h
+│   ├── Makefile
+│   ├── memory
+│   ├── memory.cpp
+│   ├── memory.h
+│   ├── register.cpp
+│   └── register.h
+├── object
+│   ├── ex_func.cpp
+│   ├── ex_func.h
+│   ├── Makefile
+│   ├── object
+│   ├── object.cpp
+│   ├── object.h
+│   ├── syntax_def.h
+│   └── temp_def.h
+├── pin
+│   ├── bits.cpp
+│   ├── bits.h
+│   ├── Makefile
+│   ├── pin
+│   ├── pin.cpp
+│   ├── pin.h
+│   ├── register.cpp
+│   └── register.h
+├── README.md
+├── register
+│   ├── bits.cpp
+│   ├── bits.h
+│   ├── Makefile
+│   ├── register
+│   ├── register.cpp
+│   └── register.h
+├── serial
+│   ├── AllotMEM.cpp
+│   ├── AllotMEM.h
+│   ├── bits.cpp
+│   ├── bits.h
+│   ├── io.cpp
+│   ├── io.h
+│   ├── Makefile
+│   ├── readme.txt
+│   ├── register.cpp
+│   ├── register.h
+│   ├── serial
+│   ├── serial.cpp
+│   └── serial.h
+├── sio
+│   ├── bits.cpp
+│   ├── bits.h
+│   ├── io.cpp
+│   ├── io.h
+│   ├── Makefile
+│   ├── readme.txt
+│   ├── register.cpp
+│   ├── register.h
+│   ├── sio
+│   ├── sio.cpp
+│   └── sio.h
+├── sync.sh
+├── testEngine
+│   ├── doc
+│   │   └── testEnging-demonstrate.png
+│   ├── src
+│   │   ├── AllotMEM.cpp
+│   │   ├── AllotMEM.h
+│   │   ├── ErrorWarning.cpp
+│   │   ├── ErrorWarning.h
+│   │   ├── Makefile
+│   │   ├── readme.txt
+│   │   ├── testEngine
+│   │   ├── testEngine.cpp
+│   │   ├── testEngine.h
+│   │   └── testEngine.ini
+│   └── winTestEngine
+│       ├── winTestEngine
+│       │   ├── testEngine.ini
+│       │   └── winTestEngine.vcproj
+│       ├── winTestEngine.ncb
+│       ├── winTestEngine.sln
+│       └── winTestEngine.suo
+└── tree.log
+
+17 directories, 113 files

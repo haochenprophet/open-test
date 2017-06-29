@@ -30,3 +30,6 @@ cp bits/bits.* register/ -f
 
 #class Cpin
 cp pin/pin.* gpio/ -f
+
+#make tree.log
+tree >tree.log
