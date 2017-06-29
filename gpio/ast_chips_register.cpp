@@ -168,4 +168,66 @@ CommonRegister scu_map_tab[] //AST_SCU_BASE +addr (offset)
 
 const int scu_map_tab_count=sizeof(scu_map_tab)/sizeof(CommonRegister);
 
+
+//Multi-function Pins Mapping and Control
+
+//"GPIOA0","MAC1LINK"
+CommonRegister MAC1LINK_REG[]{
+	{AST_SCU_BASE+0x0080,0,NO_AND,BIT0,NULL_S,"MAC1LINK","SCU80[0]=1",},
+};
+
+CommonRegister GPIOA0_REG[]{
+	{AST_SCU_BASE+0x0080,0,(DataType)~BIT0,NO_OR,NULL_S,"GPIOA0","SCU80[0]=0",},
+};
+#define MAC1LINK_CNT (sizeof(MAC1LINK_REG)/sizeof(CommonRegister))
+#define GPIOA0_CNT (sizeof(GPIOA0_REG)/sizeof(CommonRegister))
+
+//"GPIOA1","MAC2LINK"
+CommonRegister MAC2LINK_REG[]{
+	{AST_SCU_BASE+0x0080,0,NO_AND,BIT1,NULL_S,"MAC2LINK","SCU80[1]=1",},
+};
+
+CommonRegister GPIOA1_REG[]{
+	{AST_SCU_BASE+0x0080,0,(DataType)~BIT1,NO_OR,NULL_S,"GPIOA1","SCU80[1]=0",},
+};
+#define MAC2LINK_CNT (sizeof(MAC2LINK_REG)/sizeof(CommonRegister))
+#define GPIOA1_CNT (sizeof(GPIOA1_REG)/sizeof(CommonRegister))
+
+//"GPIOA2","TIMER3"
+CommonRegister TIMER3_REG[]{
+	{AST_SCU_BASE+0x0080,0,NO_AND,BIT2,NULL_S,"TIMER3","SCU80[2]=1",},
+};
+
+CommonRegister GPIOA2_REG[]{
+	{AST_SCU_BASE+0x0080,0,(DataType)~BIT2,NO_OR,NULL_S,"GPIOA2","SCU80[2]=0",},
+};
+#define TIMER3_CNT (sizeof(TIMER3_REG)/sizeof(CommonRegister))
+#define GPIOA2_CNT (sizeof(GPIOA2_REG)/sizeof(CommonRegister))
+
+//"GPIOA3","TIMER4"
+CommonRegister TIMER4_REG[]{
+	{AST_SCU_BASE+0x0080,0,NO_AND,BIT3,NULL_S,"TIMER4","SCU80[3]=1",},
+};
+
+CommonRegister GPIOA3_REG[]{
+	{AST_SCU_BASE+0x0080,0,(DataType)~BIT3,NO_OR,NULL_S,"GPIOA3","SCU80[3]=0",},
+};
+#define TIMER4_CNT (sizeof(TIMER4_REG)/sizeof(CommonRegister))
+#define GPIOA3_CNT (sizeof(GPIOA3_REG)/sizeof(CommonRegister))
+
+
+
+AstMultiPin multi_pin_tab[]
+{
+//-------------Function1 -----------------------------------------Function2-------------------------------Others---------------------
+	{{"GPIOA0","MAC1LINK",MAC1LINK_REG,MAC1LINK_CNT} , {"GPIOA0","GPIOA0",GPIOA0_REG,GPIOA0_CNT} , {PIN_NAME,FUN_NAME,CTRL_REG,CTRL_CNT}},
+	{{"GPIOA1","MAC2LINK",MAC1LINK_REG,MAC2LINK_CNT} , {"GPIOA1","GPIOA1",GPIOA1_REG,GPIOA1_CNT} , {PIN_NAME,FUN_NAME,CTRL_REG,CTRL_CNT}},
+	{{"GPIOA2","TIMER3"  ,TIMER3_REG,TIMER3_CNT    } , {"GPIOA2","GPIOA2",GPIOA2_REG,GPIOA2_CNT} , {PIN_NAME,FUN_NAME,CTRL_REG,CTRL_CNT}},
+	{{"GPIOA3","TIMER4"  ,TIMER4_REG,TIMER4_CNT    } , {"GPIOA3","GPIOA3",GPIOA3_REG,GPIOA3_CNT} , {PIN_NAME,FUN_NAME,CTRL_REG,CTRL_CNT}},
+
+};
+
+const int multi_pin_tab_count=sizeof(multi_pin_tab)/sizeof(AstMultiPin);
+
+
 #endif//AST_CHIPS_REGISTER_CPP

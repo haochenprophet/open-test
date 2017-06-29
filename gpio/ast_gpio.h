@@ -12,6 +12,13 @@
 
 #define AST_SCU_BASE 0x1E6E2000
 
+typedef struct AstMultiPinStruct //Multi-function Pins Mapping and Control
+{
+	CommonPin fun1;
+	CommonPin fun2;
+	CommonPin Others;
+}AstMultiPin;
+
 typedef struct AstGpioMapStruct
 {
 	const char* group_name;//A0-ZZ7
