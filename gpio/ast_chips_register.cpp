@@ -215,7 +215,84 @@ CommonRegister GPIOA3_REG[]{
 #define TIMER4_CNT (sizeof(TIMER4_REG)/sizeof(CommonRegister))
 #define GPIOA3_CNT (sizeof(GPIOA3_REG)/sizeof(CommonRegister))
 
+//"GPIOA4","SCL9" "TIMER5"
+CommonRegister SCL9_REG[]{
+	{AST_SCU_BASE+0x0090,0,NO_AND,BIT22,NULL_S,"SCL9","SCU90[22]=1",},
+};
 
+CommonRegister TIMER5_REG[]{
+	{AST_SCU_BASE+0x0090,0,(DataType)~BIT22,NO_OR,NULL_S,"TIMER5","SCU90[22]=0",},
+	{AST_SCU_BASE+0x0080,0,NO_AND,BIT4,NULL_S,"TIMER5","SCU80[4]=1",},
+};
+
+
+CommonRegister GPIOA4_REG[]{
+	{AST_SCU_BASE+0x0090,0,(DataType)~BIT22,NO_OR,NULL_S,"TIMER5","SCU90[22]=0",},
+	{AST_SCU_BASE+0x0080,0,(DataType)~BIT4,NO_OR,NULL_S,"TIMER5","SCU80[4]=0",},
+};
+
+#define SCL9_CNT (sizeof(SCL9_REG)/sizeof(CommonRegister))
+#define TIMER5_CNT (sizeof(TIMER5_REG)/sizeof(CommonRegister))
+#define GPIOA4_CNT (sizeof(GPIOA4_REG)/sizeof(CommonRegister))
+
+
+//"GPIOA5","SDA9" "TIMER6"
+CommonRegister SDA9_REG[]{
+	{AST_SCU_BASE+0x0090,0,NO_AND,BIT22,NULL_S,"SDA9","SCU90[22]=1",},
+};
+
+CommonRegister TIMER6_REG[]{
+	{AST_SCU_BASE+0x0090,0,(DataType)~BIT22,NO_OR,NULL_S,"TIMER6","SCU90[22]=0",},
+	{AST_SCU_BASE+0x0080,0,NO_AND,BIT5,NULL_S,"TIMER6","SCU80[5]=1",},
+};
+
+
+CommonRegister GPIOA5_REG[]{
+	{AST_SCU_BASE+0x0090,0,(DataType)~BIT22,NO_OR,NULL_S,"GPIOA5","SCU90[22]=0",},
+	{AST_SCU_BASE+0x0080,0,(DataType)~BIT5,NO_OR,NULL_S,"GPIOA5","SCU80[5]=0",},
+};
+
+#define SDA9_CNT (sizeof(SDA9_REG)/sizeof(CommonRegister))
+#define TIMER6_CNT (sizeof(TIMER6_REG)/sizeof(CommonRegister))
+#define GPIOA5_CNT (sizeof(GPIOA5_REG)/sizeof(CommonRegister))
+
+//"GPIOA6","MDC2" "TIMER7"
+CommonRegister MDC2_REG[]{
+	{AST_SCU_BASE+0x0090,0,NO_AND,BIT2,NULL_S,"MDC2","SCU90[2]=1",},
+};
+
+CommonRegister TIMER7_REG[]{
+	{AST_SCU_BASE+0x0090,0,(DataType)~BIT2,NO_OR,NULL_S,"TIMER7","SCU90[2]=0",},
+	{AST_SCU_BASE+0x0080,0,NO_AND,BIT6,NULL_S,"TIMER7","SCU80[6]=1",},
+};
+
+CommonRegister GPIOA6_REG[]{
+	{AST_SCU_BASE+0x0090,0,(DataType)~BIT2,NO_OR,NULL_S,"GPIOA6","SCU90[2]=0",},
+	{AST_SCU_BASE+0x0080,0,(DataType)~BIT6,NO_OR,NULL_S,"GPIOA6","SCU80[6]=0",},
+};
+
+#define MDC2_CNT (sizeof(MDC2_REG)/sizeof(CommonRegister))
+#define TIMER7_CNT (sizeof(TIMER7_REG)/sizeof(CommonRegister))
+#define GPIOA6_CNT (sizeof(GPIOA6_REG)/sizeof(CommonRegister))
+
+//"GPIOA7","MDIO2" "TIMER8"
+CommonRegister MDIO2_REG[]{
+	{AST_SCU_BASE+0x0090,0,NO_AND,BIT2,NULL_S,"MDIO2","SCU90[2]=1",},
+};
+
+CommonRegister TIMER8_REG[]{
+	{AST_SCU_BASE+0x0090,0,(DataType)~BIT2,NO_OR,NULL_S,"TIMER8","SCU90[2]=0",},
+	{AST_SCU_BASE+0x0080,0,NO_AND,BIT7,NULL_S,"TIMER8","SCU80[7]=1",},
+};
+
+CommonRegister GPIOA7_REG[]{
+	{AST_SCU_BASE+0x0090,0,(DataType)~BIT2,NO_OR,NULL_S,"GPIOA7","SCU90[2]=0",},
+	{AST_SCU_BASE+0x0080,0,(DataType)~BIT7,NO_OR,NULL_S,"GPIOA7","SCU80[7]=0",},
+};
+
+#define MDIO2_CNT (sizeof(MDIO2_REG)/sizeof(CommonRegister))
+#define TIMER8_CNT (sizeof(TIMER8_REG)/sizeof(CommonRegister))
+#define GPIOA7_CNT (sizeof(GPIOA7_REG)/sizeof(CommonRegister))
 
 AstMultiPin multi_pin_tab[]
 {
@@ -224,6 +301,10 @@ AstMultiPin multi_pin_tab[]
 	{{"GPIOA1","MAC2LINK",MAC1LINK_REG,MAC2LINK_CNT} , {"GPIOA1","GPIOA1",GPIOA1_REG,GPIOA1_CNT} , {PIN_NAME,FUN_NAME,CTRL_REG,CTRL_CNT}},
 	{{"GPIOA2","TIMER3"  ,TIMER3_REG,TIMER3_CNT    } , {"GPIOA2","GPIOA2",GPIOA2_REG,GPIOA2_CNT} , {PIN_NAME,FUN_NAME,CTRL_REG,CTRL_CNT}},
 	{{"GPIOA3","TIMER4"  ,TIMER4_REG,TIMER4_CNT    } , {"GPIOA3","GPIOA3",GPIOA3_REG,GPIOA3_CNT} , {PIN_NAME,FUN_NAME,CTRL_REG,CTRL_CNT}},
+	{{"GPIOA4","SCL9"    ,SCL9_REG,SCL9_CNT        } , {"GPIOA4","TIMER5",TIMER5_REG,TIMER5_CNT} , {"GPIOA4","GPIOA4",GPIOA4_REG,GPIOA4_CNT}},
+	{{"GPIOA5","SDA9"    ,SDA9_REG,SDA9_CNT        } , {"GPIOA5","TIMER6",TIMER6_REG,TIMER6_CNT} , {"GPIOA5","GPIOA5",GPIOA5_REG,GPIOA5_CNT}},
+	{{"GPIOA6","MDC2"    ,MDC2_REG,MDC2_CNT        } , {"GPIOA6","TIMER7",TIMER7_REG,TIMER7_CNT} , {"GPIOA6","GPIOA6",GPIOA6_REG,GPIOA6_CNT}},
+	{{"GPIOA7","MDIO2"   ,MDIO2_REG,MDIO2_CNT      } , {"GPIOA7","TIMER8",TIMER8_REG,TIMER8_CNT} , {"GPIOA7","GPIOA7",GPIOA7_REG,GPIOA7_CNT}},
 
 };
 
