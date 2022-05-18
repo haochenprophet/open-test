@@ -1,0 +1,2 @@
+echo >pci.log
+ls

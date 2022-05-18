@@ -1,0 +1,2 @@
+echo >cpu.log
+ls
