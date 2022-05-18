@@ -1,0 +1,2 @@
+rm *.log -rf
+ls

@@ -1,0 +1,2 @@
+echo >memory.log
+ls

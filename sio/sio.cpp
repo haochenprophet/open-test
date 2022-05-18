@@ -228,6 +228,7 @@ int Csio::sync(SioAndOr *dest,int dest_count,SioAndOr *src,int src_count,SioAndO
 			this->sync(&dest[n],&src[i]);
 		}
 	}
+	return 0;
 }
 
 SioAndOr * Csio::find(SioAndOr *p,int count,unsigned char ldn,unsigned char reg)

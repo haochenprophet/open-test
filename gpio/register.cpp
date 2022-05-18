@@ -19,6 +19,7 @@ int Cregister::display(CommonRegister * p)
 {
 	printf("addr=0x%lX(%ld),data=0x%lX(%ld),and_data=0x%lX,or_data=0x%lX,name=%s,fun=%s,desp=%s\n",
 		(long)p->addr,(long)p->addr,(long)p->data,(long)p->data,(long)p->and_data,(long)p->or_data,p->name,p->fun,p->desp);
+	return 0;
 }
 
 int Cregister::execute(CommonRegister * p)

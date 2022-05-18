@@ -1,2 +1,3 @@
-rm lspci.ini *.log
+echo $PWD/
+rm *.ini *.log
 ls
