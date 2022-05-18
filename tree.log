@@ -103,6 +103,7 @@
 │   │   ├── rm.sh
 │   │   └── test_model_name.sh
 │   ├── create.sh
+│   ├── del_all.sh
 │   ├── disk
 │   │   ├── clear.sh
 │   │   ├── create.sh
@@ -161,4 +162,4 @@
 │       └── winTestEngine.suo
 └── tree.log
 
-22 directories, 139 files
+22 directories, 140 files
