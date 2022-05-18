@@ -32,4 +32,5 @@ if test $? -eq 0 ; then
 else
   echo FAIL:PCI device exist test fail!
   echo FAIL:PCI device exist test fail! >>$log_file
+  cat lspci.log
 fi

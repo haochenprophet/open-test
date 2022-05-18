@@ -1,0 +1,2 @@
+rm *.ini *.log
+ls

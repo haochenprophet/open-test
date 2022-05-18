@@ -32,4 +32,5 @@ if test $? -eq 0 ; then
 else
   echo FAIL:CPU model name test fail!
   echo FAIL:CPU model name test fail! >>$log_file
+  cat model_name.log
 fi
